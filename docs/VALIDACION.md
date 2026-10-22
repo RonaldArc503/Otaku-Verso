@@ -52,4 +52,28 @@ La información inicial de este documento corresponde a la primera publicación.
 - Las 3 pruebas Node del publicador pasaron. `npm run build`: 0 errores/advertencias, cuatro páginas. Sintaxis de los dos comandos validada con `node --check`.
 - El acceso a Android Studio mediante Computer Use falló al iniciar: `failed to write kernel assets: El sistema no puede encontrar la ruta especificada`. Se reintentó y restableció la sesión sin conseguir control de la interfaz.
 
-**Pendiente:** configurar `keystore.properties` local con el alias y las contraseñas de key0, generar y verificar la firma del código 2, probarlo instalado en el teléfono y publicar GitHub + Firestore + Hosting. No se ha instalado el actualizador en el dispositivo ni modificado la descarga pública en esta fase. La ejecución completa del publicador y su recuperación tras fallos externos requieren el APK firmado; solo se ejecutaron comprobaciones sin publicación.
+Este fue el estado inicial, antes de recibir la configuración local de firma. La publicación firmada se completó a continuación.
+
+## Publicación firmada de la compilación 2
+
+- El propietario completó la configuración en la plantilla. Se copió a `keystore.properties`, se comprobó que está excluido de Git y se restauró la plantilla con valores de ejemplo, sin publicar contraseñas.
+- `npm run app:release -- --notes docs/release-notes-1.0-build-2.txt` ejecutó correctamente la compilación firmada con key0, la publicación en GitHub Releases, la verificación del archivo público, la actualización de Firestore y el despliegue de Firebase Hosting.
+- Versión visible **1.0**, código interno **2**, `com.example.anime`, Android mínimo 8.0 (SDK 26), 5.604.308 bytes.
+- Certificado oficial SHA-256: `3085148385dfb7450c51934534be15776515f1869ec4e7fa9e8a28629503b8ca`.
+- APK publicado SHA-256: `2f1c3f685355dcb81b17986036f9e1c8e1d128993031ad464a65d3e0824ddda7`.
+- Release: https://github.com/RonaldArc503/Otaku-Verso/releases/tag/v1.0.0-build.2
+- Descarga: https://github.com/RonaldArc503/Otaku-Verso/releases/download/v1.0.0-build.2/otaku-verso.apk
+- Hosting devuelve HTTP 200; el enlace estático de la página y el documento público real de Firestore coinciden con la compilación 2 y su hash. Astro: 0 errores y advertencias.
+- Se descargó nuevamente el archivo público y se copió a `Anime/app/release/app-release.apk`, conservando una copia local del archivo anterior.
+- En el teléfono Redmi Note 9 Pro, «Buscar actualizaciones» respondió correctamente. Durante la validación se observó instalada una compilación debug 2, con el certificado de depuración, distinto del oficial. No se desinstaló esa app ni se borraron sus datos. La validación de instalación del release oficial se realizó por separado.
+
+## Prueba completa del actualizador en Android 12 / API 31
+
+- Se creó un AVD aislado con la imagen Android TV x86 ya instalada en el SDK. Se utilizó una variante local de prueba de código 1, firmada con key0 y con Ajustes accesible para iniciar la prueba sin autenticar una cuenta. Ese manifiesto de prueba y ese APK no se publicaron; el APK oficial conserva sus actividades privadas.
+- «Buscar actualizaciones» consultó el documento real de Firestore y mostró la compilación 2 con las notas publicadas.
+- «Más tarde» cerró el aviso. La búsqueda manual volvió a ofrecer la misma actualización, como está previsto.
+- «Actualizar» descargó el APK público de GitHub. La app llegó a «Descarga verificada», tras comprobar tamaño, SHA-256, paquete, versión, compatibilidad y firma.
+- «Instalar actualización» abrió el permiso de orígenes de instalación. Se concedió únicamente en el AVD de prueba; al regresar se abrió el instalador nativo, que preguntó si se quería actualizar Otaku Verso.
+- Se confirmó «Update» en el instalador y se obtuvo «App installed». PackageManager confirmó versión 1.0, código 2. Se extrajo el APK instalado y su SHA-256 coincidió exactamente con el archivo publicado: `2f1c3f685355dcb81b17986036f9e1c8e1d128993031ad464a65d3e0824ddda7`.
+- Evidencias locales excluidas de Git: `.local/native-update-available.png`, `native-update-verified.png`, `native-update-installer.png`, `native-update-installed.png` y las jerarquías XML de cada paso. No se detectaron excepciones de AndroidRuntime en el recorrido.
+- El emulador temporal se cerró al terminar. La prueba del instalador corresponde a Android TV / API 31; en el teléfono físico se verificó la consulta desde Ajustes, conservando su instalación debug y sus datos. No se afirma cobertura de todos los modelos móviles ni de todos los fabricantes.
