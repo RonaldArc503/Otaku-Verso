@@ -24,7 +24,7 @@ async function loadRelease() {
     document.querySelector('#release-version')!.textContent = `v${release.version}`;
     document.querySelector('#release-size')!.textContent = formatSize(release.sizeBytes);
     document.querySelector('#release-android')!.textContent = `Android ${release.minAndroid}+`;
-    status.textContent = 'Estás descargando la última versión oficial publicada.';
+    status.textContent = 'Última versión oficial, lista para descargar.';
   } catch {
     status.textContent = 'Mostramos la versión publicada. No pudimos comprobar si hay una actualización.';
     retry.hidden = false;

@@ -15,7 +15,7 @@ async function enableAnalytics() {
       import('../lib/firebase'), import('firebase/analytics'),
     ]);
     // The visitor may revoke consent while the asynchronous imports are loading.
-    if (readConsent() !== 'yes' || !await isSupported()) return;
+    if (!await isSupported() || readConsent() !== 'yes') return;
     const analytics = getAnalytics(app);
     analyticsStarted = true;
     document.querySelector('#apk-download')?.addEventListener('click', () => {

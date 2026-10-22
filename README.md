@@ -36,7 +36,7 @@ Si Firestore falla, permanece disponible la última versión verificada de `src/
 npm run release:publish -- "C:/ruta/app-release.apk" 1.1 2
 ```
 
-El script crea un borrador en GitHub Releases, adjunta `otaku-verso.apk`, publica, vuelve a descargar el APK y compara SHA-256. Solo entonces actualiza Firestore y el respaldo estático local. No sobrescribe versiones ya publicadas. Si se interrumpe después de publicar y antes de actualizar Firestore, compara el APK del release con el original y actualiza los campos indicados desde Firebase Console; no vuelvas a publicar un binario diferente con la misma versión.
+El script crea un borrador en GitHub Releases, adjunta `otaku-verso.apk`, publica, vuelve a descargar el APK y compara SHA-256. Solo entonces actualiza Firestore y el respaldo estático local. No sobrescribe versiones ya publicadas. Puedes repetir el comando con el mismo archivo para recuperar una publicación interrumpida: verifica que el APK existente sea idéntico antes de actualizar Firestore.
 
 Firestore actualiza la página sin nuevo despliegue. Para actualizar también el respaldo sin JavaScript, despliega y guarda `src/data/release.json` en Git.
 
