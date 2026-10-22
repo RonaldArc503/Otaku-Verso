@@ -1,0 +1,3 @@
+Actualizaciones opcionales desde la app.
+Comprueba nuevas versiones desde Ajustes y recibe avisos al abrir Otaku Verso.
+La descarga verifica la integridad y la firma antes de abrir el instalador de Android.

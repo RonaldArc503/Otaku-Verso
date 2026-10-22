@@ -39,3 +39,17 @@ Fecha: 22 de octubre de 2026, America/El_Salvador.
 ## Actualizaciones
 
 El APK vive en GitHub Releases. Firestore guarda sus metadatos públicos y el enlace; no se almacenan binarios en Firestore ni se añaden APK al historial de Git. Procedimiento en `README.md`.
+
+## Actualizador Android y publicador verificado — 22/10/2026
+
+La información inicial de este documento corresponde a la primera publicación. En esta fase se añadió código al proyecto Android y al publicador, manteniendo la versión visible 1.0 y elevando el código interno a 2.
+
+- Android: compilación Java debug y 4 pruebas `UpdateReleaseTest` correctas. Cubren comparación por código interno, metadatos inválidos, restricciones del enlace oficial y destinos de redirección.
+- `:app:assembleRelease` correcto con R8 y lint vital. Se usó un directorio temporal de salida separado porque el `classes.dex` del directorio habitual estaba bloqueado por otro proceso. No se cerró Android Studio ni se mataron procesos del usuario.
+- El APK generado es **sin firma**, versión 1.0, código 2, minSdk 26. Su manifiesto contiene la actividad privada del actualizador, el FileProvider y el permiso de instalación. Copia local excluida de Git: `.local/otaku-verso-1.0-build2-unsigned.apk`.
+- El publicador rechaza ese APK sin firma. Se volvió a descargar el APK oficial actualmente publicado y `app:release -- --apk .local/public-build-1.apk --check` confirmó manifiesto, firma oficial y SHA-256 sin modificar servicios externos.
+- El release firmado generado previamente por el propietario conserva el certificado oficial, pero sigue en código 1 y tiene otro hash. El publicador lo rechaza por reutilizar un código con un archivo diferente.
+- Las 3 pruebas Node del publicador pasaron. `npm run build`: 0 errores/advertencias, cuatro páginas. Sintaxis de los dos comandos validada con `node --check`.
+- El acceso a Android Studio mediante Computer Use falló al iniciar: `failed to write kernel assets: El sistema no puede encontrar la ruta especificada`. Se reintentó y restableció la sesión sin conseguir control de la interfaz.
+
+**Pendiente:** configurar `keystore.properties` local con el alias y las contraseñas de key0, generar y verificar la firma del código 2, probarlo instalado en el teléfono y publicar GitHub + Firestore + Hosting. No se ha instalado el actualizador en el dispositivo ni modificado la descarga pública en esta fase. La ejecución completa del publicador y su recuperación tras fallos externos requieren el APK firmado; solo se ejecutaron comprobaciones sin publicación.

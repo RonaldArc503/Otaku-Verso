@@ -7,7 +7,9 @@
     "build": "astro check && astro build",
     "preview": "astro preview --host 127.0.0.1",
     "deploy": "npm run build && firebase deploy --only hosting --project anime-rc",
-    "release:publish": "node scripts/publish-release.mjs"
+    "release:publish": "node scripts/publish-release.mjs",
+    "app:release": "node scripts/release-app.mjs",
+    "test:release": "node --test scripts/apk.test.mjs"
   },
   "keywords": [],
   "author": "",

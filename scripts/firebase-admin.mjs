@@ -15,9 +15,10 @@ export async function firebaseRequest(path, options = {}) {
   return response.status === 204 ? null : response.json();
 }
 
-export async function writeReleaseMetadata(release) {
+export async function writeReleaseMetadata(release, expectedUpdateTime) {
   const fields = Object.fromEntries(Object.entries(release).map(([key, value]) => [key, typeof value === 'number' ? { integerValue: String(value) } : { stringValue: value }]));
-  await firebaseRequest('https://firestore.googleapis.com/v1/projects/anime-rc/databases/(default)/documents/webPublic/app', { method: 'PATCH', body: JSON.stringify({ fields }) });
+  const precondition = expectedUpdateTime ? `?currentDocument.updateTime=${encodeURIComponent(expectedUpdateTime)}` : '';
+  await firebaseRequest(`https://firestore.googleapis.com/v1/projects/anime-rc/databases/(default)/documents/webPublic/app${precondition}`, { method: 'PATCH', body: JSON.stringify({ fields }) });
   console.log('Firestore: webPublic/app actualizado.');
 }
 

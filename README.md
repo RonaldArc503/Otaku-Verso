@@ -30,17 +30,32 @@ Si Firestore falla, permanece disponible la última versión verificada de `src/
 
 ## Publicar una actualización del APK
 
-1. Genera y verifica el APK con una firma compatible con versiones anteriores. El script no compila Android ni cambia su firma; los valores de versión y código deben coincidir con el APK.
-2. Inicia sesión en Firebase CLI y Git Credential Manager. El script usa sus credenciales en memoria, nunca las escribe en el repositorio.
-3. Desde esta carpeta, ejecuta (usa una versión nueva y su versionCode real):
+La versión visible puede seguir siendo **1.0**. Cada APK diferente necesita un `versionCode` mayor en `app/build.gradle`; la primera compilación con actualizador usa **2**. La app compara ese código, no el texto de la versión.
+
+Con el APK firmado que generaste desde Android Studio usando el almacén **key0**, ejecuta desde esta carpeta:
 
 ```sh
-npm run release:publish -- "C:/ruta/app-release.apk" 1.1 2
+npm run app:release -- --apk "C:/Users/HP VICTUS/AndroidStudioProjects/Anime/app/release/app-release.apk" --notes "docs/release-notes-1.0-build-2.txt"
 ```
 
-El script crea un borrador en GitHub Releases, adjunta `otaku-verso.apk`, publica, vuelve a descargar el APK y compara SHA-256. Solo entonces actualiza Firestore y el respaldo estático local. No sobrescribe versiones ya publicadas. Puedes repetir el comando con el mismo archivo para recuperar una publicación interrumpida: verifica que el APK existente sea idéntico antes de actualizar Firestore.
+Para incluir también la compilación de Android en el mismo comando, copia `keystore.properties.example` a `keystore.properties` **en el proyecto Android**, completa localmente las contraseñas y el alias real de key0, y ejecuta `npm run app:release`. Guarda una copia privada del almacén; no subas almacenes ni contraseñas a GitHub. El archivo local está excluido de Git. Android Studio sigue permitiendo generar el APK firmado sin ese archivo. Gradle ya no usa una firma debug para release si falta la configuración.
 
-Firestore actualiza la página sin nuevo despliegue. Para actualizar también el respaldo sin JavaScript, despliega y guarda `src/data/release.json` en Git.
+Requiere Android SDK Build Tools, Java compatible con Gradle (se detecta el JBR de Android Studio), Firebase CLI con sesión en anime-rc y Git Credential Manager con acceso al repositorio. `OTAKU_ANDROID_DIR` o `--android` permite cambiar la ruta de Android.
+
+El comando lee versión, código y Android mínimo directamente del manifiesto del APK con `aapt`; verifica la firma con `apksigner` y compara el certificado oficial de `release-policy.json`. Rechaza paquetes distintos, archivos sin firma, otras claves, retrocesos y códigos reutilizados con otro archivo. Nunca pasa contraseñas a GitHub. La huella del certificado es pública y no contiene la clave privada.
+
+Crea un borrador en GitHub Releases con etiqueta `v1.0.0-build.2`, adjunta `otaku-verso.apk`, publica y vuelve a descargar el archivo para comprobar su SHA-256. Después actualiza Firestore con control de concurrencia, el respaldo estático y Firebase Hosting. Las versiones anteriores se conservan; el enlace oficial pasa a la nueva compilación. El mismo APK permite reintentar una publicación interrumpida. Si falla Hosting después de actualizar Firestore, repite el comando con el mismo archivo. Guarda `src/data/release.json` y los cambios de código en Git; el comando no hace commits ni push automáticamente.
+
+Para comprobar un APK sin publicar ni desplegar:
+
+```sh
+npm run app:release -- --apk "C:/ruta/app-release.apk" --check
+npm run test:release
+```
+
+`npm run release:publish -- "C:/ruta/app-release.apk"` permite ejecutar solo GitHub + Firestore + respaldo local, sin compilar/desplegar la web. `--notes` admite un archivo UTF-8 de hasta 2000 caracteres. Las notas del build 2 se usan solo en el ejemplo inicial; escribe las novedades reales de cada entrega.
+
+En Android, el aviso automático se comprueba al abrir la pantalla principal, con un intervalo de seis horas tras una consulta correcta. No se ejecuta sobre el reproductor. «Más tarde» silencia esa compilación durante 24 horas; «Buscar actualizaciones» en Ajustes siempre comprueba. La descarga permanece en la caché privada y verifica tamaño, SHA-256, paquete, versión, compatibilidad y certificado contra la app instalada. Android solicita permiso de instalación cuando corresponda y confirmación en su instalador; no hay instalaciones silenciosas. La app anterior (código 1) aún no tiene este mecanismo y necesita instalar una vez la nueva 1.0 desde la web.
 
 ## Desplegar la web
 
