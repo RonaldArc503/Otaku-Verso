@@ -1,0 +1,17 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Website release metadata: public single-document reads, no client writes.
+    match /webPublic/app {
+      allow get: if true;
+      allow list, create, update, delete: if false;
+    }
+
+    // Preserve the pre-existing project's access contract outside webPublic.
+    // These legacy open rules require a separate review before being restricted.
+    match /{rootCollection}/{document=**} {
+      allow read, write: if rootCollection != 'webPublic';
+    }
+  }
+}

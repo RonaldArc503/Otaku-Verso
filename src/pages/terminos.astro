@@ -1,0 +1,7 @@
+---
+import Layout from '../layouts/Layout.astro';
+import legal from '../data/legal.json';
+---
+<Layout title="Términos de uso — Otaku Verso" description="Lee los términos de uso de la aplicación Otaku Verso y conoce cómo contactar al responsable.">
+  <main id="contenido" class="legal shell"><a href="/" class="text-link">← Volver al inicio</a><h1>Términos de uso</h1><p class="updated">Actualizado el 22 de octubre de 2026 · DEV Alex</p><div class="legal-copy" set:html={legal.terms} /><a href="/privacidad" class="text-link legal-back">Consultar la política de privacidad →</a></main>
+</Layout>

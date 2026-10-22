@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import release from '../data/release.json';
+import { formatSize } from '../lib/release';
+const features = [
+  { number: '01', icon: 'play', title: 'Una historia más.', text: 'Explora el catálogo de anime y encuentra tu próxima serie. Subtitulado o en español latino, según la fuente.' },
+  { number: '02', icon: 'book', title: 'También se lee.', text: 'Entra al mundo del manga. Guarda tus títulos y retoma la lectura en el capítulo y la página que dejaste.' },
+  { number: '03', icon: 'heart', title: 'Muy a tu estilo.', text: 'Reúne tus favoritos en un solo lugar y lleva contigo las historias a las que siempre quieres volver.' },
+];
+const faqs = [
+  ['¿En qué dispositivos funciona?', 'Otaku Verso está disponible para teléfonos y tabletas con Android 8.0 o superior. Esta descarga es un archivo APK para Android; no es compatible con iPhone o iPad.'],
+  ['¿Por qué se descarga un APK?', 'La app se distribuye directamente desde esta web oficial mediante GitHub Releases. Android puede pedirte permiso para instalar aplicaciones desde el navegador. Concédelo solo si reconoces el origen y desactívalo después de instalar.'],
+  ['¿Necesito conexión a Internet?', 'Sí. El catálogo, la reproducción, la lectura de contenido y la sincronización requieren conexión. La disponibilidad, el idioma y la calidad del contenido dependen de cada fuente externa.'],
+  ['¿Cómo actualizo la app?', 'Vuelve a esta página y descarga la versión publicada. Para conservar los datos locales, instala la actualización sobre la app existente, sin desinstalarla. Android debe reconocer la misma firma para permitir la actualización.'],
+  ['¿Cómo contacto con el equipo?', 'Escribe a animerc503@gmail.com para consultas sobre la app, problemas de acceso o solicitudes relacionadas con tu cuenta. No envíes contraseñas ni códigos de acceso.'],
+];
+---
+<Layout>
+  <main id="contenido">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="status-dot"></span> BIENVENIDO A TU UNIVERSO</div>
+        <h1 id="hero-title">Las buenas<br />historias <span class="outline-word">no</span><br />tienen <em>fin<span class="title-star" aria-hidden="true">✳</span></em></h1>
+        <p class="hero-description">Anime, manga y ese «un episodio más».<br />Todo tu mundo otaku, ahora en tu Android.</p>
+        <div class="hero-actions"><a class="button primary" href="#descargar"><Icon name="down" size={19} /> Descarga app oficial <Icon name="arrow" size={18} /></a><a class="text-link" href="#universo">Explora la app <span aria-hidden="true">↓</span></a></div>
+        <div class="hero-meta"><Icon name="phone" size={15} /><span>Android 8.0+</span><span class="meta-separator">/</span><span>Directo a tu dispositivo</span></div>
+      </div>
+      <div class="hero-art">
+        <div class="art-frame"><img src="/universe.webp" alt="Ilustración original de un viajero bajo una luna violeta, sobre una ciudad nocturna" width="1536" height="1024" fetchpriority="high" /><div class="art-shade"></div><span class="art-label">OTAKU VERSO / UN MUNDO POR EXPLORAR</span><div class="art-caption"><span>Tu siguiente<br /><strong>obsesión.</strong></span><span class="art-symbol" aria-hidden="true">↗</span></div></div>
+        <div class="floating-note"><span aria-hidden="true">✦</span> Fuera de lo ordinario.</div>
+        <div class="art-index"><span>01 — INFINITAS HISTORIAS</span><span aria-hidden="true">✳</span></div>
+      </div>
+    </section>
+    <div class="ticker" aria-label="Anime, manga, favoritos y continuar viendo"><div class="shell ticker-inner"><span>ANIME</span><span class="ticker-star" aria-hidden="true">✳</span><span>MANGA</span><span class="ticker-star" aria-hidden="true">✳</span><span>TU BIBLIOTECA</span><span class="ticker-star" aria-hidden="true">✳</span><span>A TU RITMO</span><span class="ticker-star" aria-hidden="true">✳</span></div></div>
+    <section id="universo" class="universe section shell" aria-labelledby="universe-title">
+      <div class="section-heading"><div><span class="eyebrow subdued">UN SOLO LUGAR. MUCHOS MUNDOS.</span><h2 id="universe-title">Más historias.<br /><span class="muted">Más a tu manera.</span></h2></div><p>No importa si eres de maratones o de un capítulo al día. Aquí hay espacio para tu forma de disfrutar.</p></div>
+      <div class="feature-grid">{features.map(feature => <article class="feature"><div class="feature-top"><span>{feature.number} /</span><Icon name={feature.icon} size={28} /></div><h3>{feature.title}</h3><p>{feature.text}</p></article>)}</div>
+      <div class="progress-panel"><div class="progress-visual" aria-hidden="true"><div class="progress-line"><span class="progress-play">▶</span><span class="progress-track"><span></span></span><span>18:42</span></div><div class="progress-pill"><Icon name="check" size={15} /> Tu historia sigue aquí</div></div><div class="progress-copy"><span class="eyebrow subdued">PAUSA. VIVE. VUELVE.</span><h3>Donde lo dejaste.<br />Cuando tú quieras.</h3><p>Continúa tus episodios, consulta tu historial y sincroniza tus favoritos y progreso al iniciar sesión.</p></div><Icon name="clock" size={66} class="progress-clock" /></div>
+    </section>
+    <section id="descargar" class="download-section" aria-labelledby="download-title">
+      <div class="download-inner shell"><div class="download-brand"><img src="/logo.png" width="130" height="130" alt="Logo oficial de Otaku Verso" loading="lazy" /><span>HECHO PARA TU ANDROID</span></div><div class="download-copy"><span class="eyebrow">EL PRÓXIMO CAPÍTULO LO ELIGES TÚ</span><h2 id="download-title">Entra al<br /><em>Otaku Verso.</em></h2><p>Tu próxima historia empieza con un toque.</p><a id="apk-download" class="button download-button" href={release.downloadUrl} rel="noopener noreferrer"><Icon name="down" size={21} /> Descarga app oficial <Icon name="arrow" size={20} /></a><p class="release-meta"><span id="release-version">v{release.version}</span><span aria-hidden="true">·</span><span id="release-size">{formatSize(release.sizeBytes)}</span><span aria-hidden="true">·</span><span id="release-android">Android {release.minAndroid}+</span></p><p class="release-status" id="release-status" role="status">Versión oficial publicada. Comprobando actualizaciones…</p><button class="retry-button" id="release-retry" type="button" hidden>Volver a comprobar</button><noscript><p class="release-status">Puedes descargar la versión publicada con el botón. Activa JavaScript para comprobar actualizaciones.</p></noscript></div><span class="download-star" aria-hidden="true">✳</span></div>
+    </section>
+    <section id="instalar" class="installation section shell" aria-labelledby="install-title"><div class="section-heading"><div><span class="eyebrow subdued">DE AQUÍ A TU PANTALLA</span><h2 id="install-title">Tres pasos.<br /><span class="muted">Y estás dentro.</span></h2></div><p>Una instalación directa, sin complicaciones.<br />Solo necesitas tu Android.</p></div><ol class="steps"><li><span class="step-number">01</span><div><h3>Descarga el APK</h3><p>Toca «Descarga app oficial» y guarda el archivo en tu dispositivo.</p></div><Icon name="down" size={23} /></li><li><span class="step-number">02</span><div><h3>Permite la instalación</h3><p>Abre el archivo. Si Android lo solicita, autoriza a tu navegador a instalar esta app.</p></div><Icon name="shield" size={23} /></li><li><span class="step-number">03</span><div><h3>Abre tu nuevo universo</h3><p>Termina la instalación, abre Otaku Verso y empieza a explorar. Puedes revocar el permiso del navegador al terminar.</p></div><Icon name="arrow" size={23} /></li></ol></section>
+    <section id="preguntas" class="faq-section section shell" aria-labelledby="faq-title"><div class="faq-heading"><span class="eyebrow subdued">ANTES DEL PRIMER EPISODIO</span><h2 id="faq-title">¿Algo<br /><span class="muted">en mente?</span></h2><p>Resolvamos las dudas.</p><a class="text-link" href="mailto:animerc503@gmail.com">Contactar al equipo <Icon name="arrow" size={17} /></a></div><div class="faq-list">{faqs.map(([question, answer]) => <details><summary>{question}<Icon name="plus" size={20} /></summary><p>{answer}</p></details>)}</div></section>
+    <div class="closing shell"><span>EL MUNDO REAL PUEDE ESPERAR UN CAPÍTULO.</span><a href="#descargar">Nos vemos dentro. <Icon name="arrow" size={24} /></a></div>
+  </main>
+  <script>import '../scripts/download';</script>
+</Layout>

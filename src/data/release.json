@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "versionCode": 1,
+  "downloadUrl": "https://github.com/RonaldArc503/Otaku-Verso/releases/download/v1.0.0/otaku-verso.apk",
+  "sizeBytes": 5590368,
+  "minAndroid": "8.0",
+  "publishedAt": "2026-10-22",
+  "sha256": "57ea0ec5575ffafe28242c3cdb852fd9b2b1f0f0b0b40f1bb62d7193538759d9",
+  "releaseNotes": "Primera publicación de Otaku Verso para Android."
+}

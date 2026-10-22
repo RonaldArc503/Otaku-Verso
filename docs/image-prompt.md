@@ -1,0 +1,5 @@
+# Ilustración original
+
+Generada con la herramienta integrada image_gen. Archivo: public/universe.webp.
+
+Use case: illustration-story. Asset type: original anime illustration for the official Otaku Verso Android app website. Wide landscape 1536x1024. An original young adult anime traveler with short windswept silver hair, purple eyes, black urban jacket with small violet accents, seen from the waist up in three-quarter profile facing left, looking toward a luminous violet crescent moon. Nighttime futuristic Japanese rooftop and distant city silhouettes, flowing wisps of lavender cosmic energy, dark ink navy background, crisp manga ink linework and detailed cel shading, restrained cream highlights and violet light. Character on the right half, generous dark negative space on the left, cinematic sophisticated atmospheric editorial key visual. No text, no logos, no watermarks, no recognizable copyrighted characters. Fully clothed, no weapons, no sexualization. High quality finished anime illustration.

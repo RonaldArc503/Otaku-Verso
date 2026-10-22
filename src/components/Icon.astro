@@ -1,0 +1,19 @@
+---
+interface Props { name: string; size?: number; class?: string }
+const { name, size = 24, class: className } = Astro.props;
+const paths: Record<string, string> = {
+  arrow: 'M7 17 17 7M7 7h10v10',
+  down: 'M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5',
+  play: 'm9 5 11 7-11 7V5Z',
+  book: 'M12 5v16M3 3h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5v16h-5a4 4 0 0 0-4 2 4 4 0 0 0-4-2H3V3Z',
+  heart: 'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z',
+  clock: 'M12 8v5l3 2M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z',
+  bell: 'M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4',
+  phone: 'M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm3 17h4',
+  check: 'm5 12 4 4L19 6',
+  plus: 'M12 5v14M5 12h14',
+  globe: 'M2 12h20M12 2a19 19 0 0 1 0 20 19 19 0 0 1 0-20ZM22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z',
+  shield: 'm12 2 9 4v6c0 5-9 10-9 10S3 17 3 12V6l9-4Zm-4 9 3 3 5-6',
+};
+---
+<svg class={className} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={paths[name] ?? paths.arrow} /></svg>
