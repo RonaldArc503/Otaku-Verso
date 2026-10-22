@@ -30,4 +30,5 @@ Las imágenes seleccionadas se inspeccionaron antes de publicar. Se descartaron 
 - «Ampliar captura» abre la imagen seleccionada en un diálogo. Se comprobó el cierre con el botón y el retorno del foco al control de ampliación.
 - Revisada la adaptación en navegador a ancho móvil y escritorio, con ausencia de desplazamiento horizontal en las comprobaciones finales y teléfonos completos dentro de la portada de escritorio.
 - El SDK sigue obteniendo la configuración pública de Firebase Hosting. La página muestra el estado de la versión desde Firestore y conserva el enlace del APK verificado.
+- Se corrigió la cabecera de caché de las rutas sin extensión: la portada exige revalidación para evitar seguir mostrando la versión anterior. Los recursos con hash de `/_astro/` mantienen su caché inmutable.
 - Estas capturas muestran el estado de la app y del catálogo en el momento de la toma. No representan una prueba completa de reproducción, lectura ni sincronización.
