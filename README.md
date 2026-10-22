@@ -57,6 +57,6 @@ firebase deploy --only firestore:rules --project anime-rc
 
 ## Contenido y recursos
 
-Logo aportado por el propietario. Ilustración original generada mediante image_gen, optimizada como WebP; prompt en `docs/image-prompt.md`. La ilustración es decorativa y no representa una captura de la app. Los textos legales de la app se copiaron del cliente Android actual; la política de la web describe su tratamiento por separado.
+Logo aportado por el propietario. La portada y la galería utilizan capturas reales de la app obtenidas por ADB, dentro de marcos Android creados con CSS. Origen y preparación en `docs/CAPTURAS_APP.md`. La ilustración inicial se conserva como recurso histórico, con su prompt en `docs/image-prompt.md`; ya no se usa en la portada ni en la imagen para compartir. Los textos legales de la app se copiaron del cliente Android actual; la política de la web describe su tratamiento por separado.
 
 `docs/VALIDACION.md` registra las verificaciones y los límites de esta entrega.

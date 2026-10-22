@@ -1,0 +1,33 @@
+---
+import AndroidPhone from './AndroidPhone.astro';
+import Icon from './Icon.astro';
+const screens = [
+  { id: 'home', icon: 'clock', title: 'Tu historia sigue aquí.', label: 'Inicio', text: 'Retoma un episodio y descubre las novedades desde tu pantalla de inicio.', alt: 'Captura real del inicio de Otaku Verso, con Continuar viendo y episodios recientes' },
+  { id: 'explore', icon: 'globe', title: 'Encuentra tu próximo anime.', label: 'Explorar', text: 'Explora por género y utiliza los filtros de búsqueda para elegir qué ver.', alt: 'Captura real de la búsqueda de Otaku Verso con géneros como acción, fantasía, romance e isekai' },
+  { id: 'anime', icon: 'play', title: 'Conoce cada historia.', label: 'Anime', text: 'Consulta la sinopsis, los idiomas, el estado y los episodios antes de empezar.', alt: 'Captura real de la ficha de Sousou no Frieren en Otaku Verso con sinopsis, idiomas y episodios' },
+  { id: 'manga', icon: 'book', title: 'También hay otro capítulo.', label: 'Manga', text: 'Descubre mangas populares y títulos en emisión desde su propio catálogo.', alt: 'Captura real del catálogo de mangas de Otaku Verso con títulos populares y en emisión' },
+];
+---
+<div class="showcase" data-showcase>
+  <div class="showcase-copy">
+    <div class="screen-tabs" role="tablist" aria-label="Pantallas de la app">
+      {screens.map((screen, index) => <button type="button" role="tab" id={`tab-${screen.id}`} aria-selected={index === 0 ? 'true' : 'false'} aria-controls={`panel-${screen.id}`} tabindex={index === 0 ? 0 : -1} data-screen={screen.id}><Icon name={screen.icon} size={17} />{screen.label}</button>)}
+    </div>
+    {screens.map((screen, index) => <div class="screen-description" id={`description-${screen.id}`} data-description={screen.id} hidden={index !== 0}><span class="eyebrow subdued">{String(index + 1).padStart(2, '0')} / DENTRO DE OTAKU VERSO</span><h3>{screen.title}</h3><p>{screen.text}</p></div>)}
+    <div class="showcase-controls"><button class="button screenshot-expand" type="button" data-expand><Icon name="plus" size={17} /> Ampliar captura</button><span class="real-capture"><span></span> Capturas reales de la app</span></div>
+    <p class="capture-footnote">Así se ve Otaku Verso en Android. El catálogo y la disponibilidad del contenido pueden cambiar.</p>
+  </div>
+  <div class="showcase-device">
+    <span class="showcase-orbit" aria-hidden="true"></span>
+    <AndroidPhone class="showcase-phone">
+      {screens.map((screen, index) => <div id={`panel-${screen.id}`} role="tabpanel" aria-labelledby={`tab-${screen.id}`} data-panel={screen.id} hidden={index !== 0} tabindex="0"><img src={`/screenshots/${screen.id}.webp`} alt={screen.alt} width="864" height="1733" loading="lazy" /></div>)}
+    </AndroidPhone>
+    <span class="device-caption">OTAKU VERSO <span aria-hidden="true">/</span> ANDROID</span>
+  </div>
+</div>
+<dialog class="screenshot-dialog" aria-labelledby="screenshot-dialog-title" data-screenshot-dialog>
+  <div class="dialog-toolbar"><div><span class="eyebrow subdued">CAPTURA REAL</span><h2 id="screenshot-dialog-title">Inicio</h2></div><button type="button" data-close-dialog aria-label="Cerrar captura">Cerrar <span aria-hidden="true">×</span></button></div>
+  <div class="dialog-screen"><img src="/screenshots/home.webp" alt={screens[0].alt} width="864" height="1733" data-expanded-image loading="lazy" /></div>
+</dialog>
+<script>import '../scripts/showcase';</script>
+<noscript><p class="capture-footnote">Otras pantallas: <a href="/screenshots/explore.webp">Explorar</a> · <a href="/screenshots/anime.webp">Anime</a> · <a href="/screenshots/manga.webp">Manga</a>.</p></noscript>

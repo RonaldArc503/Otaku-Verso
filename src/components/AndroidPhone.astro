@@ -1,0 +1,20 @@
+---
+interface Props {
+  src?: string;
+  alt?: string;
+  class?: string;
+  eager?: boolean;
+}
+const { src, alt = '', class: className, eager = false } = Astro.props;
+---
+<div class:list={['android-phone', className]}>
+  <span class="phone-power" aria-hidden="true"></span>
+  <span class="phone-volume" aria-hidden="true"></span>
+  <div class="phone-glass">
+    <div class="phone-camera-bar" aria-hidden="true"><span></span></div>
+    <div class="phone-screen">
+      {src ? <img src={src} alt={alt} width="864" height="1733" loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} /> : <slot />}
+    </div>
+    <div class="phone-chin" aria-hidden="true"><span></span></div>
+  </div>
+</div>
