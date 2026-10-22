@@ -1,5 +1,5 @@
 import { doc, getDoc } from 'firebase/firestore/lite';
-import { db } from '../lib/firebase';
+import { getFirebaseServices } from '../lib/firebase';
 import { parseRelease, formatSize } from '../lib/release';
 
 const button = document.querySelector<HTMLAnchorElement>('#apk-download');
@@ -15,7 +15,7 @@ async function loadRelease() {
   let timeout: ReturnType<typeof setTimeout> | undefined;
   try {
     const snapshot = await Promise.race([
-      getDoc(doc(db, 'webPublic', 'app')),
+      getFirebaseServices().then(({ db }) => getDoc(doc(db, 'webPublic', 'app'))),
       new Promise<never>((_, reject) => { timeout = setTimeout(() => reject(new Error('timeout')), 8000); }),
     ]);
     const release = snapshot.exists() ? parseRelease(snapshot.data()) : null;

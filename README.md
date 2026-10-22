@@ -18,7 +18,9 @@ npm run build
 
 ## Firebase y descarga
 
-`src/lib/firebase.ts` contiene la configuración pública proporcionada para la web. La página lee únicamente **webPublic/app** en Firestore, valida sus campos y solo acepta enlaces HTTPS de APK en Releases de este repositorio.
+`src/lib/firebase.ts` obtiene la configuración pública en tiempo de ejecución desde `/__/firebase/init.json`, servido por Firebase Hosting. La clave no se guarda en Git ni se inserta durante la compilación. Esto no convierte la configuración del cliente en un secreto: sigue siendo pública por diseño. La clave del navegador está restringida por dominios y APIs; las reglas de Firestore controlan el acceso a los datos. La página lee únicamente **webPublic/app** en Firestore, valida sus campos y solo acepta enlaces HTTPS de APK en Releases de este repositorio.
+
+Para usar el SDK durante el desarrollo local, copia `.env.example` a `.env.local` y sustituye el JSON de ejemplo por el de `/__/firebase/init.json` del sitio. `.env.local` queda excluido de Git. Sin configuración local, la página conserva su descarga estática y muestra el aviso de comprobación; la compilación no necesita claves.
 
 Campos del documento: `version` (string), `versionCode` (number), `downloadUrl` (string), `sizeBytes` (number), `minAndroid` (string), `publishedAt` (YYYY-MM-DD), `sha256` (string) y `releaseNotes` (string).
 

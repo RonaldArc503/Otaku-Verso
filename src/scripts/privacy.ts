@@ -12,7 +12,7 @@ async function enableAnalytics() {
   if (analyticsStarted) return;
   try {
     const [{ app }, { getAnalytics, isSupported, logEvent }] = await Promise.all([
-      import('../lib/firebase'), import('firebase/analytics'),
+      import('../lib/firebase').then(module => module.getFirebaseServices()), import('firebase/analytics'),
     ]);
     // The visitor may revoke consent while the asynchronous imports are loading.
     if (!await isSupported() || readConsent() !== 'yes') return;
