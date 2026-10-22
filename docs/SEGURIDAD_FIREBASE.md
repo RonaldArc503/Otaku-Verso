@@ -24,6 +24,8 @@ GitHub detectó en el primer commit una Google API Key dentro de la configuraci�
 - Misma solicitud desde un referer ajeno: HTTP 403, `API_KEY_HTTP_REFERRER_BLOCKED`.
 - Lectura del documento público de la versión con la clave y el referer oficial: HTTP 200.
 - Las reglas de `webPublic` continúan bloqueando listados y escrituras de clientes.
+- Despliegue publicado en `https://anime-rc.web.app`; el navegador confirma la versión de Firestore y el enlace del APK, sin errores de consola en la recarga comprobada.
+- Alerta [GitHub #1](https://github.com/RonaldArc503/Otaku-Verso/security/secret-scanning/1): estado `resolved`, motivo `false_positive`, confirmado mediante lectura posterior a la resolución.
 
 ## Alcance y límites
 
