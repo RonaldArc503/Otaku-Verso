@@ -1,13 +1,13 @@
 {
   "applicationId": "com.example.anime",
-  "version": "1.0.0",
-  "versionCode": 3,
+  "version": "1.0.1",
+  "versionCode": 4,
   "minSdk": 26,
   "minAndroid": "8.0",
   "signerSha256": "3085148385dfb7450c51934534be15776515f1869ec4e7fa9e8a28629503b8ca",
-  "sizeBytes": 5606460,
-  "sha256": "f72e5a895ec479e66a5dda5cf79a6285473e4b0d40eb8051470225c972b53d10",
-  "downloadUrl": "https://github.com/RonaldArc503/Otaku-Verso/releases/download/v1.0.0-build.3/otaku-verso.apk",
+  "sizeBytes": 5609344,
+  "sha256": "b51df26e2739390145a9adb2254847323237005edd2dd74e02b8dc76fa15611c",
+  "downloadUrl": "https://github.com/RonaldArc503/Otaku-Verso/releases/download/v1.0.1-build.4/otaku-verso.apk",
   "publishedAt": "2026-10-22",
-  "releaseNotes": "Prueba 1 apk"
+  "releaseNotes": "Actualizaciones opcionales desde la app.\nMejora de interfaz \nComprueba nuevas versiones desde Ajustes y recibe avisos al abrir Otaku Verso.\nLa descarga verifica la integridad y la firma antes de abrir el instalador de Android.\n\nAndroid 8.0 o superior."
 }
