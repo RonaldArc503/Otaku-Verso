@@ -1,13 +1,13 @@
 {
   "applicationId": "com.example.anime",
   "version": "1.0",
-  "versionCode": 10,
+  "versionCode": 11,
   "minSdk": 26,
   "minAndroid": "8.0",
   "signerSha256": "3085148385dfb7450c51934534be15776515f1869ec4e7fa9e8a28629503b8ca",
-  "sizeBytes": 5669828,
-  "sha256": "e6fbf2de19c70c3ca8a94117af7e789b3caf70256aafb4cc5206573616aee186",
-  "downloadUrl": "https://github.com/RonaldArc503/Otaku-Verso/releases/download/v1.0.0-build.10/otaku-verso.apk",
+  "sizeBytes": 5674580,
+  "sha256": "91e475ead6a617cd48b88ef474df2112893ef5d9d50bbb04cae3024d5577308c",
+  "downloadUrl": "https://github.com/RonaldArc503/Otaku-Verso/releases/download/v1.0.0-build.11/otaku-verso.apk",
   "publishedAt": "2026-10-23",
-  "releaseNotes": "+ Fuentes nueva de manga\n+ Sistema a prueba de fallos"
+  "releaseNotes": "+ Mas servidores de Video"
 }
