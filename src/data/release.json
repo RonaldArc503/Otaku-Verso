@@ -1,13 +1,13 @@
 {
   "applicationId": "com.example.anime",
   "version": "1.0",
-  "versionCode": 8,
+  "versionCode": 9,
   "minSdk": 26,
   "minAndroid": "8.0",
   "signerSha256": "3085148385dfb7450c51934534be15776515f1869ec4e7fa9e8a28629503b8ca",
-  "sizeBytes": 5635256,
-  "sha256": "93892110a0fa2802bb5767295c37e52016e2a284e778d979df1113a5fa2e81d8",
-  "downloadUrl": "https://github.com/RonaldArc503/Otaku-Verso/releases/download/v1.0.0-build.8/otaku-verso.apk",
+  "sizeBytes": 5641680,
+  "sha256": "5057b912f1196aad123a7f18a400ced71b97a8cf8a429227c9ed2b539984182c",
+  "downloadUrl": "https://github.com/RonaldArc503/Otaku-Verso/releases/download/v1.0.0-build.9/otaku-verso.apk",
   "publishedAt": "2026-10-22",
-  "releaseNotes": "Mejoras en Interfaz"
+  "releaseNotes": "Se corrigió un bug de Episodios"
 }
