@@ -1,0 +1,2 @@
+-Configuración de  manga
+-Adaptación en el paginado al manga japonés.
