@@ -1,13 +1,13 @@
 {
   "applicationId": "com.example.anime",
-  "version": "1.0.4",
-  "versionCode": 7,
+  "version": "1.0",
+  "versionCode": 8,
   "minSdk": 26,
   "minAndroid": "8.0",
   "signerSha256": "3085148385dfb7450c51934534be15776515f1869ec4e7fa9e8a28629503b8ca",
-  "sizeBytes": 5635224,
-  "sha256": "4bde1089e6ece0dc67542d4a79c0cdac6fd6cf3bc8e04e23502131a92b7bd12c",
-  "downloadUrl": "https://github.com/RonaldArc503/Otaku-Verso/releases/download/v1.0.4-build.7/otaku-verso.apk",
+  "sizeBytes": 5635256,
+  "sha256": "93892110a0fa2802bb5767295c37e52016e2a284e778d979df1113a5fa2e81d8",
+  "downloadUrl": "https://github.com/RonaldArc503/Otaku-Verso/releases/download/v1.0.0-build.8/otaku-verso.apk",
   "publishedAt": "2026-10-22",
-  "releaseNotes": "Mejoras de Interfaz"
+  "releaseNotes": "Mejoras en Interfaz"
 }
