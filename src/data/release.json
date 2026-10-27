@@ -1,13 +1,13 @@
 {
   "applicationId": "com.example.anime",
-  "version": "1.0",
-  "versionCode": 12,
+  "version": "1.0.1",
+  "versionCode": 13,
   "minSdk": 26,
   "minAndroid": "8.0",
   "signerSha256": "3085148385dfb7450c51934534be15776515f1869ec4e7fa9e8a28629503b8ca",
-  "sizeBytes": 5680712,
-  "sha256": "0115ec33fb2357431c6143f0f4b7067d37f90abb7a90cdac51be74033db9fff6",
-  "downloadUrl": "https://github.com/RonaldArc503/Otaku-Verso/releases/download/v1.0.0-build.12/otaku-verso.apk",
-  "publishedAt": "2026-10-23",
-  "releaseNotes": "-Configuración de  manga\n-Adaptación en el paginado al manga japonés."
+  "sizeBytes": 5810871,
+  "sha256": "53d5cb79744cf2f36e227180c4a3af40edc60a54890c7ed1ef73314cfbaa7625",
+  "downloadUrl": "https://github.com/RonaldArc503/Otaku-Verso/releases/download/v1.0.1-build.13/otaku-verso.apk",
+  "publishedAt": "2026-10-27",
+  "releaseNotes": "**Novedades de esta versión**\n\n- Nuevo diseño de perfil: personalízalo con tu avatar y banner favoritos.\n- Configuración rediseñada para una navegación más sencilla.\n- Mejoras en el módulo de manga y sus fuentes.\n- Optimizaciones de rendimiento y estabilidad.\n- Ahora puedes encontrar el manga de cada anime desde su ficha de detalles, cuando esté disponible."
 }
