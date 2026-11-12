@@ -1,0 +1,5 @@
++ 🚀 Novedades
+- Reproducción optimizada.
+- Ahora puedes eliminar tu cuenta.
+- Cambia tu nombre de usuario.
+- Corrección de notificaciones de anime.
